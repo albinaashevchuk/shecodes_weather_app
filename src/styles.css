@@ -1,0 +1,96 @@
+
+.container {
+    margin: 0 auto;
+    margin-top: 30px;
+    padding-top: 20px;
+    width: 600px;
+    border: 1px solid #34495e;
+    border-radius: 10px;
+background-color: #e4f1fe;
+box-shadow: 10px 10px 21px -14px rgba(34,49,63,0.57);
+font-family: 'Rajdhani', sans-serif;
+}
+img {
+    width: 550px;
+}
+h1 {
+    color: #34495e;
+    font-weight: 400;
+   
+}
+footer {
+    text-align: center;
+    padding-top: 10px;
+    color: #34495e;
+   font-family: 'Courier New', Courier, monospace;
+}
+.search-button {
+    background-color: #22313f;
+    color: #e4f1fe;
+    padding: 6px 20px;
+    border-radius: 5px;
+    border: 1px solid #22313f;
+
+}
+.search-button:hover {
+    background-color: #34495e;
+    box-shadow: 10px 10px 21px -14px rgba(34,49,63,0.57);
+}
+
+
+.town-time {
+     border: 1px solid gray;
+     border-radius: 5px;
+}
+.time-day {
+    padding-top: 15px;
+    font-size: 1.5rem;
+}
+.weather-indicators {
+    border: 1px solid #5CC2F8;
+    border-radius: 5px;
+     font-size: larger;
+     font-style: bold;
+}
+.current-emodji {
+   font-size: 40px;
+}
+.current-temperature {
+    font-size: 40px;
+    
+}
+.indicator {
+    font-size: 18px;
+    margin-top: 120px;
+}
+.celsiy-indicator {
+    color: #5CC2F8;
+}
+.celsiy-indicator:hover{
+    color: #22313f;
+    cursor: pointer;
+}
+.farengeit-indicator {
+    color: #a88b1f;
+}
+.farengeit-indicator:hover {
+    color: #22313f;
+    cursor: pointer;
+}
+.current-description {
+    font-weight: bolder;
+    color: #5CC2F8;
+    text-transform: capitalize;
+}
+.current-humidity {
+     font-size: 40px;
+     
+}
+.current-wind {
+      font-size: 40px;
+     
+}
+.week-weather {
+    font-size: 18px;
+    
+}
