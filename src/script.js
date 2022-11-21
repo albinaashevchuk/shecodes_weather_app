@@ -13,83 +13,54 @@ let currentDay = days[now.getDay()];
 
 currentDate.innerHTML = `${currentHour}:${currentMinutes}, ${currentDay} `;
 
-// CHANGE TOWN IN FORM INPUT
-function seachTown(event) {
+// TAKE API RESPONSE AND DISPLAY DATA
+
+function displayWeatherCondition(response) {
+  
+  document.querySelector("#city-name").innerHTML = response.data.name;
+  document.querySelector("#current-temperature").innerHTML = Math.round(response.data.main.temp);
+  document.querySelector("#current-humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#current-windspeed").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#weather-description").innerHTML = response.data.weather[0].main;
+  
+}
+// DEFAULT CITY DISPLAY
+function searchCity(city) {
+  const apiKey = "d75be4ab28304d8abb6b825bbe55e153";
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+   axios.get(apiUrl).then(displayWeatherCondition); 
+  
+}
+// API REQUEST
+function handleSubmit(event) {
   event.preventDefault();
   
-    let seachInput = document.querySelector("#search-text-input");
-    let inputedCity = document.querySelector("h1");
-    inputedCity.innerHTML = `${seachInput.value}`;
-    const apiKey = "d75be4ab28304d8abb6b825bbe55e153";
-   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${seachInput.value}&units=metric&appid=${apiKey}`;
-   axios.get(`${apiUrl}&appiid=${apiKey}`).then(showTemperature);
-  
-
+  const city = document.querySelector("#search-text-input").value;
+  searchCity(city);
+ 
 }
-  let form = document.querySelector("#search-form");
-form.addEventListener("submit", seachTown);
+// CURRENT LOCATION
+function searchLocation(position) {
+  let apiKey = "d75be4ab28304d8abb6b825bbe55e153";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${
+    position.coords.latitude
+  }&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
 
-// CHANGE TEMPERATURE, DESCRIPTION, HUMINIDY, WIND SPEED
-function showTemperature(response) {
-  // console.log(response)
-        
-    const temperature = Math.round(response.data.main.temp);
-    const temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = `${temperature}`;
-
-    const weatherDescription = response.data.weather[0].description;
-  const descriptionElement = document.querySelector("#weather-description");
-
- descriptionElement.innerHTML = `${weatherDescription}`;
-
-  const humidity = Math.round(response.data.main.humidity);
-  
-  const humidityElement = document.querySelector("#current-humidity");
-
-  humidityElement.innerHTML = `${humidity}%`;
-
-  const windSpeed = Math.round(response.data.wind.speed);
-  const windElement = document.querySelector("#current-windspeed");
-
-  windElement.innerHTML = `${windSpeed}km/h`;
-  
- 
-      }
-
-
-
-
-// CURRENT BUTTON
-
-function takePosition(position) {
-  
-  const latitude = position.coords.latitude;
-  const longitude = position.coords.longitude;
- const apiKey = "d75be4ab28304d8abb6b825bbe55e153";
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
- axios.get(`${apiUrl}&appiid=${apiKey}`).then(showTemperature, showCityName);
-   
+  axios.get(apiUrl).then(displayWeatherCondition);
 }
- 
-function getCurrentPosition() {
-  
-  navigator.geolocation.getCurrentPosition(takePosition);
-  }
 
-const currentButton = document.querySelector("#current-button");
-currentButton.addEventListener("click",getCurrentPosition);
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
 
-function showCityName(response) {
-  console.log(response)
-  console.log(response.data.name);
-           const cityName = response.data.name;
-  const nameElement = document.querySelector("h1");
+const searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
 
-  nameElement.innerHTML = `${cityName}`;
- 
-      }
+const currentLocationButton = document.querySelector("#current-button");
+currentLocationButton.addEventListener("click", getCurrentLocation);
 
-
+searchCity("Vyshhorod"); // DEFAULT CITY DISPLAY
 
  // CHANGE CELSIIY FARENGEIT INDICATOR
 
@@ -119,26 +90,3 @@ let farengeit = document.querySelector("#indicator-farengeit");
 celsiy.addEventListener("click", onCelsiy);
 farengeit.addEventListener("click", onFarengeit);
 
-
-
-// function handlePosition(position) {
-//   console.log(position.coords.latitude);
-//   console.log(position.coords.longitude);
-//   const lati = position.coords.latitude;
-//   const longi = position.coords.latitude;
-//  const apiKey = "d75be4ab28304d8abb6b825bbe55e153";
-//   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${longi}&units=metric&appid=${apiKey}`;
-//   axios.get(`${apiUrl}&appiid=${apiKey}`).then(showTemperature);
-// }
-
-// navigator.geolocation.getCurrentPosition(handlePosition);
-
-
-// function showTemperature(response) {
-        
-//     const temperature = Math.round(response.data.main.temp);
-//     const temperatureElement = document.querySelector("h1");
-//   temperatureElement.innerHTML = `${temperature} C`
- 
-//     console.log(response.data.main.temp);
-//       }
