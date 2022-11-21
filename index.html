@@ -26,7 +26,8 @@
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <!--AXIOS-->
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -56,7 +57,7 @@
       <!-- TOWN-TIME -->
       <div class="row m-3 town-time">
         <div class="col p-2 entered-town">
-          <h1>Vyshhorod</h1>
+          <h1 id="city-name"></h1>
         </div>
         <div class="col text-end time-day" id="time-day">
           <p>18:00, Monday</p>
@@ -67,7 +68,7 @@
         <div class="col">
           <p>
             <span class="current-emodji"> 🌧 </span>
-            <span class="current-temperature" id="current-temperature">15</span>
+            <span class="current-temperature" id="current-temperature"></span>
             <span class="indicator celsiy-indicator" id="indicator-celsiy"
               >ºC</span
             >
@@ -75,14 +76,14 @@
               >ºF</span
             >
           </p>
-          <p class="current-description" id="weather-description">Rainny</p>
+          <p class="current-description" id="weather-description"></p>
         </div>
         <div class="col">
-          <p class="current-humidity" id="current-humidity">22%</p>
+          <p class="current-humidity"><span id="current-humidity"></span>%</p>
           <p>Humidity</p>
         </div>
         <div class="col">
-          <p class="current-wind" id="current-windspeed">10km/h</p>
+          <p class="current-wind"><span id="current-windspeed"></span>km/h</p>
           <p>Wind</p>
         </div>
       </div>
